@@ -1,0 +1,6 @@
+.env
+PLAN.md
+
+# Runtime data
+prometheus/data/
+grafana/data/

@@ -1,0 +1,36 @@
+name: Config Validate
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - docker-compose.yml
+      - prometheus/**
+      - blackbox/**
+      - grafana/provisioning/**
+      - .github/workflows/ci-config-validate.yml
+  pull_request:
+    paths:
+      - docker-compose.yml
+      - prometheus/**
+      - blackbox/**
+      - grafana/provisioning/**
+      - .github/workflows/ci-config-validate.yml
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Validate docker compose
+        run: docker compose config >/dev/null
+
+      - name: Validate Prometheus config
+        run: |
+          docker run --rm \
+            -v "$PWD/prometheus:/etc/prometheus:ro" \
+            prom/prometheus:v2.53.3 \
+            promtool check config /etc/prometheus/prometheus.yml

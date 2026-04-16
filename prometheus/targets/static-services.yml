@@ -1,0 +1,5 @@
+# Add services exposing /metrics reachable by Prometheus on attached networks.
+# Example target format: service-name:port
+- labels:
+    job_group: custom-services
+  targets: []

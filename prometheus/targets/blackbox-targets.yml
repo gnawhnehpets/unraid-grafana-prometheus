@@ -1,0 +1,13 @@
+# Add endpoints to probe via blackbox-exporter.
+# Example target format: http://service-name:port/health
+- labels:
+    probe: http
+  targets:
+    - http://prometheus:9090/-/healthy
+    - http://grafana:3000/api/health
+    - http://radarr:8989
+    - http://sonarr:7878
+    - http://plex:32400/identity
+    - http://192.168.10.164:8989
+    - http://192.168.10.164:7878
+    - http://192.168.10.164:32400/identity
