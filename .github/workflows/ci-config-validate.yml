@@ -6,6 +6,8 @@ on:
       - main
     paths:
       - docker-compose.yml
+      - docker/prometheus/**
+      - docker/grafana/**
       - prometheus/**
       - blackbox/**
       - grafana/provisioning/**
@@ -13,6 +15,8 @@ on:
   pull_request:
     paths:
       - docker-compose.yml
+      - docker/prometheus/**
+      - docker/grafana/**
       - prometheus/**
       - blackbox/**
       - grafana/provisioning/**

@@ -1,6 +1,8 @@
 # Unraid Grafana + Prometheus Stack
 
-This repository provides a Docker Compose monitoring stack for Unraid using official upstream images.
+This repository provides a Docker Compose monitoring stack for Unraid using your Docker Hub images:
+- `gnawhnehpets/unraid-prometheus`
+- `gnawhnehpets/unraid-grafana`
 
 ## Included Services
 - Prometheus
@@ -11,11 +13,12 @@ This repository provides a Docker Compose monitoring stack for Unraid using offi
 
 ## Quick Start
 1. Copy `.env.example` to `.env` and set a strong Grafana password.
-2. Start core services:
+2. Ensure the Docker Hub images exist (or run the publish workflow first).
+3. Start core services:
    ```bash
    docker compose up -d
    ```
-3. Optionally start exporters:
+4. Optionally start exporters:
    ```bash
    docker compose --profile exporters up -d
    ```
@@ -44,7 +47,10 @@ Minimum preconfigured probe targets:
 
 ## CI Workflows
 - `Config Validate`: checks Compose and Prometheus config.
-- `DockerHub Publish (Optional)`: only used when a custom `Dockerfile` exists.
+- `DockerHub Publish Images`: builds and pushes both images to Docker Hub.
+
+Required GitHub secret:
+- `DOCKERHUB_TOKEN` (Docker Hub access token for user `gnawhnehpets`)
 
 ## Future Dashboards
 Place custom dashboard JSON files in `grafana/dashboards/`.
